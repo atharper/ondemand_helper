@@ -12,7 +12,7 @@
     "persistent": true
   },
   "content_scripts": [ {
-    "matches": ["https://bitbucket.org/caselledevops/connectmastergit/commits/*", "https://github.com/caselle/Connect/commits/*"],
+    "matches": ["https://bitbucket.org/caselledevops/connectmastergit/commits*", "https://github.com/caselle/Connect/commits*"],
     "js": ["jquery.min.js", "inject.js"]
   } ],
   "browser_action": {

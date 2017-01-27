@@ -1,9 +1,9 @@
 {
   "name": "Bitbucket Builds",
-  "version": "0.0.1",
+  "version": "0.0.w",
   "manifest_version": 2,
-  "description": "Injecting build column into bitbucker page",
-  "homepage_url": "http://danharper.me",
+  "description": "Injecting build column into bitbucket and connect pages",
+  "homepage_url": "http://caselle.com",
   "background": {
     "scripts": [
       "jquery.min.js",
@@ -16,7 +16,7 @@
     "js": ["jquery.min.js", "inject.js"]
   } ],
   "browser_action": {
-    "default_title": "Inject"
+    "default_title": "Inject javascript"
   },
   "permissions": [
     "https://*/*",

@@ -1,6 +1,6 @@
 {
   "name": "Bitbucket Builds",
-  "version": "0.0.w",
+  "version": "0.0.2",
   "manifest_version": 2,
   "description": "Injecting build column into bitbucket and connect pages",
   "homepage_url": "http://caselle.com",

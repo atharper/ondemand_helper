@@ -1,8 +1,8 @@
 {
   "name": "Bitbucket Builds",
-  "version": "0.0.2",
-  "manifest_version": 2,
-  "description": "Injecting build column into bitbucket and connect pages",
+  "version": "0.0.3",
+  "manifest_version": 3,
+  "description": "Injecting build column into github and connect pages",
   "homepage_url": "http://caselle.com",
   "background": {
     "scripts": [
@@ -16,7 +16,7 @@
     "js": ["jquery.min.js", "inject.js"]
   } ],
   "browser_action": {
-    "default_title": "Inject javascript"
+    "default_title": "Add column"
   },
   "permissions": [
     "https://*/*",

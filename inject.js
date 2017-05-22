@@ -11,17 +11,6 @@ function addJQuery(callback) {
 
 function main(dictionary) {
 
-  $("tr").each(function(row) {
-    var link = $(this).children(".hash").children("div").children("a").attr('href');
-    if (link != null) {
-      var linkParts = link.split("/");
-      var revision = linkParts[linkParts.length -1].split("?")[0];
-      var build = dictionary[revision];
-      if (build == undefined) build = "";
-      $(this).children(".status").html(build);
-    }
-  });
-
   $("li").each(function(i) {
     var commit = $(this).data('channel');
     if (commit) {

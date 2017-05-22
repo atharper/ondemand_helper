@@ -38,7 +38,6 @@ function main(dictionary) {
       chrome.runtime.sendMessage({
         method: 'GET',
         action: 'xhttp',
-        async: false,
         url: 'http://cctray:peekaboo$Treet@gocaselle:8153/go/api/pipelines/' + buildBranch + '/history/' + x
       }, function(responseText) {
         var response = JSON.parse(responseText);

@@ -1,7 +1,7 @@
 {
   "name": "Bitbucket Builds",
-  "version": "0.0.3",
-  "manifest_version": 3,
+  "version": "0.0.4",
+  "manifest_version": 2,
   "description": "Injecting build column into github and connect pages",
   "homepage_url": "http://caselle.com",
   "background": {
@@ -11,6 +11,9 @@
     ],
     "persistent": true
   },
+  "icons": { "16": "icon16.png",
+           "64": "icon64.png",
+          "128": "icon128.png" },
   "content_scripts": [ {
     "matches": ["https://bitbucket.org/caselledevops/connectmastergit/commits*", "https://github.com/caselle/Connect/commits*"],
     "js": ["jquery.min.js", "inject.js"]

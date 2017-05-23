@@ -1,8 +1,9 @@
 {
-  "name": "Bitbucket Builds",
-  "version": "0.0.5",
+  "name": "Ferdinand Build Injector",
+  "short_name": "Ferdinand",
+  "version": "0.0.6",
   "manifest_version": 2,
-  "description": "Injecting build column into github and connect pages",
+  "description": "Injecting connect build column into github commit pages",
   "homepage_url": "http://caselle.com",
   "background": {
     "scripts": [

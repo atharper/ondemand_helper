@@ -41,7 +41,7 @@ function main(dictionary) {
 (function() {
   var dictionary = {};
 
-  $.each(["2017.05", "2017.08", "Development"], function(__, buildBranch) {
+  $.each(["2017.05", "2017.08", "Development", $(location).attr('href').split('/').pop()], function(__, buildBranch) {
     $.each([0, 10, 20, 30, 40], function(_, x) {
       chrome.runtime.sendMessage({
         method: 'GET',

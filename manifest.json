@@ -16,7 +16,7 @@
            "64": "icon64.png",
           "128": "icon128.png" },
   "content_scripts": [ {
-    "matches": ["https://bitbucket.org/caselledevops/connectmastergit/commits*", "https://github.com/caselle/Connect/commits*"],
+    "matches": ["https://github.com/caselle/Connect/commits*", "https://github.com/caselle/Connect/pull/*/commits"],
     "js": ["jquery.min.js", "inject.js"]
   } ],
   "browser_action": {

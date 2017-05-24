@@ -24,7 +24,7 @@ function main(dictionary) {
         if ($(this).find(".copy-stuff").length === 0)
         {
           var cell = $(this).children(".commit-links-cell");
-          cell.css('width', '360px');
+          cell.css('width', '375px');
           cell.append('<div class="commit-links-group BtnGroup copy-stuff">' +
            '<button aria-label="Copy the build number" class="sha js-zeroclipboard btn btn-outline BtnGroup-item zeroclipboard-button tooltipped tooltipped-s" ' +
            'style="border-right-width: 0px;" ' +
@@ -39,7 +39,6 @@ function main(dictionary) {
 }
 
 (function() {
-  var dictionary = {};
 
   var branch = ''
 
@@ -47,7 +46,7 @@ function main(dictionary) {
   if ($(location).attr('href').indexOf("pull") > 0) {
     branch = $("span.css-truncate-target").last().html();
   } else {
-    branch = $(location).attr('href').split('/').pop()
+    branch = $(location).attr('href').split('/').pop();
   }
 
   console.log("Branch");
@@ -61,6 +60,8 @@ function main(dictionary) {
         url: 'http://cctray:peekaboo$Treet@gocaselle:8153/go/api/pipelines/' + buildBranch + '/history/' + x
       }, function(responseText) {
         var response = JSON.parse(responseText);
+
+        var dictionary = {};
 
         $.each(response.pipelines, function(i, pipeline) {
           $.each(pipeline.build_cause.material_revisions[0].modifications, function(j, modification) {

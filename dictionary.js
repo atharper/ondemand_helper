@@ -27,9 +27,17 @@ function runWithDictionary(funct) {
         var response = tryParseJSON(responseText);
         if (!response) return;
 
+        if (branch == buildBranch) console.log(response);
+
         $.each(response.pipelines, function(i, pipeline) {
           $.each(pipeline.build_cause.material_revisions[0].modifications, function(j, modification) {
-            if (!dictionary[modification.revision]) dictionary[modification.revision] = pipeline.label;
+            if (!dictionary[modification.revision]) dictionary[modification.revision] = {
+              label: pipeline.label,
+              state: pipeline.stages[0].jobs[0].state,
+              result: pipeline.stages[0].jobs[0].result,
+              branch: branch,
+              infoLink: 'http://cctray:peekaboo$Treet@gocaselle:8153/go/pipelines/' + buildBranch + '/' + pipeline.label.split('.').pop() + '/MSBuild/1'
+            };
           });
         });
 

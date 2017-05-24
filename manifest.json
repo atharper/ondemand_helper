@@ -16,8 +16,8 @@
            "64": "icon64.png",
           "128": "icon128.png" },
   "content_scripts": [ {
-    "matches": ["https://github.com/caselle/Connect/commits*", "https://github.com/caselle/Connect/pull/*/commits"],
-    "js": ["dictionary.js", "jquery.min.js", "commits.js"]
+    "matches": ["https://github.com/caselle/Connect/commits*", "https://github.com/caselle/Connect/pull/*/commits", "https://caselle.my.workfront.com/task/view?ID*"],
+    "js": ["dictionary.js", "jquery.min.js", "commits.js", "task_details.js"]
   } ],
   "browser_action": {
     "default_title": "Add column"

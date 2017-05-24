@@ -23,11 +23,11 @@ function runWithDictionary(funct) {
         method: 'GET',
         action: 'xhttp',
         url: 'http://cctray:peekaboo$Treet@gocaselle:8153/go/api/pipelines/' + buildBranch + '/history/' + x
-      }, function(responseText) {
+      }, function (responseText) {
         var response = tryParseJSON(responseText);
         if (!response) return;
 
-        if (branch == buildBranch) console.log(response);
+        if (branch === buildBranch) console.log(response);
 
         $.each(response.pipelines, function(i, pipeline) {
           $.each(pipeline.build_cause.material_revisions[0].modifications, function(j, modification) {
@@ -47,13 +47,13 @@ function runWithDictionary(funct) {
   });
 }
 
-function tryParseJSON (jsonString){
+function tryParseJSON (jsonString) {
   try {
     var o = JSON.parse(jsonString);
-    if (o && typeof o === "object") {
+    if (o && typeof o === 'object') {
       return o;
     }
   }
   catch (e) { }
   return false;
-};
+}

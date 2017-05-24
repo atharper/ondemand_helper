@@ -17,7 +17,7 @@
           "128": "icon128.png" },
   "content_scripts": [ {
     "matches": ["https://github.com/caselle/Connect/commits*", "https://github.com/caselle/Connect/pull/*/commits"],
-    "js": ["dictionary.js", "jquery.min.js", "inject.js"]
+    "js": ["dictionary.js", "jquery.min.js", "commits.js"]
   } ],
   "browser_action": {
     "default_title": "Add column"

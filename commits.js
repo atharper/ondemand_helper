@@ -8,15 +8,15 @@ function main (dictionary) {
       if (build != undefined) {
         console.log(build);
         var buildNumber = build.label;
-        var color = getColor(build);
+        var color = getColor2(build);
         var buildLink = getBuildLink(build);
 
         if ($(location).attr('href').indexOf('pull') < 0) $('.container').css('width', '60%');
-        $(this).parent().width(1150);
+        $(this).parent().width(1180);
         if ($(this).find('.copy-stuff').length === 0)
         {
           var cell = $(this).children('.commit-links-cell');
-          cell.css('width', '375px');
+          cell.css('width', '385px');
           cell.append('<div class="commit-links-group BtnGroup copy-stuff">' +
            '<button aria-label="Copy the build number" class="sha js-zeroclipboard btn btn-outline BtnGroup-item zeroclipboard-button tooltipped tooltipped-s" ' +
            'style="border-right-width: 0px;" ' +
@@ -33,7 +33,7 @@ function getBuildLink (build) {
   return build.infoLink;
 }
 
-function getColor (build) {
+function getColor2 (build) {
   if (build.state !== 'Completed') {
     return 'color: orange;';
   } else if (build.result === 'Passed') {

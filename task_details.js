@@ -23,7 +23,9 @@
     };
 
     var color = getColor(build);
-    if (color) taskLabel.css('color', color);
-    taskLabel.text(taskLabel.text() + ' ---- ' + build.label);
+    if (color) color = 'color: ' + color + ';';
+    else color = '';
+    taskLabel.append('---<span style="font-size: 12px;' + color + '">' + build.label + '</span>');
+    // taskLabel.text(taskLabel.text() + ' ---- ' + build.label);
   });
 })();

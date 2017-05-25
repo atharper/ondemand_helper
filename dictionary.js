@@ -27,8 +27,6 @@ function runWithDictionary(funct) {
         var response = tryParseJSON(responseText);
         if (!response) return;
 
-        if (branch === buildBranch) console.log(response);
-
         $.each(response.pipelines, function(i, pipeline) {
           $.each(pipeline.build_cause.material_revisions[0].modifications, function(j, modification) {
             if (!dictionary[modification.revision]) dictionary[modification.revision] = {
@@ -45,15 +43,4 @@ function runWithDictionary(funct) {
       });
     });
   });
-}
-
-function tryParseJSON (jsonString) {
-  try {
-    var o = JSON.parse(jsonString);
-    if (o && typeof o === 'object') {
-      return o;
-    }
-  }
-  catch (e) { }
-  return false;
 }

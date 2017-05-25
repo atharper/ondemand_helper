@@ -1,18 +1,7 @@
-function getColor (build) {
-  if (build.state !== 'Completed') {
-    return 'orange';
-  } else if (build.result === 'Passed') {
-    return 'green';
-  } else if (build.result === 'Failed') {
-    return 'red';
-  }
-  return false;
-}
-
 (function () {
   if ($(location).attr('href').indexOf('caselle.my.workfront.com/task/view') < 0) return;
   var taskLabel = $('.fnt-sm').last();
-  var branch = taskLabel.html() + ".11";
+  var branch = taskLabel.html() + '.11';
 
   chrome.runtime.sendMessage({
     method: 'GET',
@@ -33,19 +22,6 @@ function getColor (build) {
 
     var color = getColor(build);
     if (color) taskLabel.css('color', color);
-    taskLabel.text(taskLabel.text() + " ---- " + build.label);
-
-    refreshRun();
+    taskLabel.text(taskLabel.text() + ' ---- ' + build.label);
   });
 })();
-
-function tryParseJSON (jsonString) {
-  try {
-    var o = JSON.parse(jsonString);
-    if (o && typeof o === 'object') {
-      return o;
-    }
-  }
-  catch (e) { }
-  return false;
-}

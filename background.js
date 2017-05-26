@@ -22,6 +22,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, callback) {
 
 chrome.browserAction.onClicked.addListener(function(tab) {
   chrome.tabs.executeScript(null, { file: "jquery.min.js" }, function() {
-    chrome.tabs.executeScript(null, { file: "inject.js" });
+    chrome.tabs.executeScript(null, { file: "commits.js" });
+    chrome.tabs.executeScript(null, { file: "gocd.js" });
+    chrome.tabs.executeScript(null, { file: "task_details.js" });
   });
 });

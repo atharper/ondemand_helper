@@ -13,7 +13,11 @@ function mainGoCD() {
 
     if (title.children('.github-link').length > 0) return;
     var branch = title.children('a').text();
-    title.append('<span class="github-link" style="background: url"><a href="https://github.com/caselle/Connect/commits/'
-      + branch + '"><img src="http://i.imgur.com/fljzgOQ.png" width="16px"/></a></span>');
+    $.get(chrome.extension.getURL('/templates/build_title.html'), function(data) {
+      title.append(data);
+      var link = title.children('.github-link');
+      link.find('a').attr('href', 'https://github.com/caselle/Connect/commits/' + branch);
+      link.find('img').attr('src', chrome.extension.getURL('/images/github.png'));
+    });
   });
 }

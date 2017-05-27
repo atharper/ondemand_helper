@@ -12,9 +12,9 @@
     ],
     "persistent": true
   },
-  "icons": { "16": "icon16.png",
-           "64": "icon64.png",
-          "128": "icon128.png" },
+  "icons": { "16": "/images/icon16.png",
+           "64": "/images/icon64.png",
+          "128": "/images/icon128.png" },
   "content_scripts": [ {
     "matches": ["https://github.com/caselle/Connect/commits*", "https://github.com/caselle/Connect/pull/*/commits", "https://caselle.my.workfront.com/task/view?ID*",
       "https://caselle.attask-ondemand.com/task/view?ID*", "http://gocaselle:8153/go/pipelines"],
@@ -23,6 +23,7 @@
   "browser_action": {
     "default_title": "Add column"
   },
+  "web_accessible_resources": ["/templates/github_link.html", "/templates/task_number.html", "/images/github.png", "/templates/build_title.html"],
   "permissions": [
     "https://*/*",
     "http://*/*",

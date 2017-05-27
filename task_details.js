@@ -6,10 +6,20 @@
 
   $.each(['.02', '.05', '.08', '.11'], function (_, x) {
     getLastBuild(taskLabel.html() + x, function(build) {
-      var color = getColor(build);
-      if (color) color = 'color: ' + color + ';';
-      else color = '';
-      taskLabel.append('---<span style="font-size: 12px;' + color + '">' + build.label + '</span>');
-    })
+      insertTaskDetails(build);
+    });
   });
 })();
+
+function insertTaskDetails(build) {
+  var taskLabel = $('.fnt-sm').last();
+
+  var color = getColor(build);
+  taskLabel.append('―');
+  $.get(chrome.extension.getURL('/templates/task_number.html'), function(data) {
+    taskLabel.append(data);
+    taskLabel.children('.build-number').css('color', color ? color : '').text(build.label);
+    taskLabel.find('a').attr('href', 'https://github.com/caselle/Connect/commits/' + build.branch);
+    taskLabel.find('img').attr('src', chrome.extension.getURL('/images/github.png'));
+  });
+}

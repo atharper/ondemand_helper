@@ -28,7 +28,12 @@
   "permissions": [
     "https://*/*",
     "http://*/*",
+    "storage",
     "tabs",
     "activeTab"
-  ]
+  ],
+  "options_ui": {
+    "page": "templates/options.html",
+    "chrome_style": true
+  }
 }

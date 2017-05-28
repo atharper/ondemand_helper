@@ -1,7 +1,9 @@
 var key = '';
 
-
-(function () {
+chrome.storage.sync.get({
+  key: '',
+}, function(items) {
+  key = items.key;
   var out = $('#status');
 
   chrome.tabs.executeScript({
@@ -12,32 +14,7 @@ var key = '';
 
     addRevision(build);
     addPullRequest(build);
-
-    $.get(chrome.extension.getURL('/diff'), function(data) {
-      // $('#status').html('');
-
-      var lines = data.split(/\r?\n/).filter(function(line) {return line.startsWith('+++') || line.startsWith('---')});
-      for (var i = 0; i < lines.length; i += 2) {
-        var lineA = lines[i].substring(5);
-        var lineB = lines[i+1].substring(5);
-        // $('#status').append(lineA + '<br>');
-        // $('#status').append(lineB + '<br>');
-
-        if (lineA == lineB) {
-          $('#changed-files').append(lineA.substring(1) + '\n');
-        } else if (lineA == 'dev/null') {
-          $('#added-files').append('+' + lineB.substring(1) + '\n');
-        } else if (lineB == 'dev/null') {
-          $('#removed-files').append('-' + lineA.substring(1) + '\n');
-        } else {
-          $('#removed-files').append(lineA + '/' + lineB);
-        }
-       }
-
-       $('#copy').click(function () {
-         copyTextToClipboard($('#status').text());
-       })
-    });
+    addFiles(build);
   });
 })();
 
@@ -68,7 +45,31 @@ function addPullRequest(build) {
   });
 }
 
-function request(uri, funct) {
+function addFiles(build) {
+  requestText('/repos/caselle/Connect/pulls/780.diff', function(data) {
+    var lines = data.split(/\r?\n/).filter(function(line) {return line.startsWith('+++') || line.startsWith('---')});
+    for (var i = 0; i < lines.length; i += 2) {
+      var lineA = lines[i].substring(5);
+      var lineB = lines[i+1].substring(5);
+
+      if (lineA == lineB) {
+        $('#changed-files').append(lineA.substring(1) + '\n');
+      } else if (lineA == 'dev/null') {
+        $('#added-files').append('+' + lineB.substring(1) + '\n');
+      } else if (lineB == 'dev/null') {
+        $('#removed-files').append('-' + lineA.substring(1) + '\n');
+      } else {
+        $('#removed-files').append(lineA + '/' + lineB);
+      }
+     }
+
+     $('#copy').click(function () {
+       copyTextToClipboard($('#status').text());
+     })
+  }, function (request) { request.setRequestHeader('Accept', 'application/vnd.github.VERSION.diff')});
+}
+
+function request(uri, funct, addHeaders) {
   var request = new XMLHttpRequest();
 
   request.onload = function() {
@@ -78,6 +79,22 @@ function request(uri, funct) {
   request.open('GET', 'https://api.github.com' + uri, true)
   request.setRequestHeader('Authorization', 'token ' + key);
   request.setRequestHeader('User-Agent', 'aluhadora');
+  if (addHeaders) addHeaders(request);
+
+  request.send()
+}
+
+function requestText(uri, funct, addHeaders) {
+  var request = new XMLHttpRequest();
+
+  request.onload = function() {
+    funct(this.responseText);
+  };
+
+  request.open('GET', 'https://api.github.com' + uri, true)
+  request.setRequestHeader('Authorization', 'token ' + key);
+  request.setRequestHeader('User-Agent', 'aluhadora');
+  if (addHeaders) addHeaders(request);
 
   request.send()
 }

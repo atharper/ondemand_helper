@@ -18,8 +18,9 @@ function insertTaskDetails(build) {
   taskLabel.append('―');
   $.get(chrome.extension.getURL('/templates/task_number.html'), function(data) {
     taskLabel.append(data);
-    taskLabel.children('.build-number').css('color', color ? color : '').text(build.label);
+    taskLabel.children('.build-number').css('color', color ? color : '').text(build.label).attr('data-build', JSON.stringify(build));
     taskLabel.find('a').attr('href', 'https://github.com/caselle/Connect/commits/' + build.branch);
     taskLabel.find('img').attr('src', chrome.extension.getURL('/images/github.png'));
+
   });
 }

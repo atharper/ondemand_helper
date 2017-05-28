@@ -1,7 +1,7 @@
 {
   "name": "Ferdinand Build Injector",
   "short_name": "Ferdinand",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "manifest_version": 2,
   "description": "Injecting connect build column into github commit pages",
   "homepage_url": "http://caselle.com",
@@ -21,12 +21,14 @@
     "js": ["jquery.min.js", "utilities.js", "dictionary.js", "commits.js", "task_details.js", "gocd.js"]
   } ],
   "browser_action": {
-    "default_title": "Add column"
+    "default_title": "Add column",
+    "default_popup": "templates/popup.html"
   },
   "web_accessible_resources": ["/templates/github_link.html", "/templates/task_number.html", "/images/github.png", "/templates/build_title.html"],
   "permissions": [
     "https://*/*",
     "http://*/*",
-    "tabs"
+    "tabs",
+    "activeTab"
   ]
 }

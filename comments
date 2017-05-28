@@ -1,0 +1,37 @@
+curl -i 'https://api.github.com/repos/caselle/Connect/branches/454427.11'
+curl -i 'https://api.github.com/repos/caselle/Connect/commits?sha=454427.11'
+curl -i 'https://api.github.com/repos/caselle/Connect/pulls?head=caselle:454427.11'
+curl -iH "Accept: application/vnd.github.VERSION.diff" 'https://api.github.com/repos/caselle/Connect/pulls/780.diff'
+
+
+Given task number
+   Get branch name
+    Get `commit`
+      Get branches that include commit
+        Get builds that include commit
+          If none compute
+    Get diff from pull request
+      Compute `files` differences
+
+Build 4544.11.4 revision e515c6b
+
+https://github.com/caselle/Connect/pull/780
+
+`files`
+
+If no builds in .02, .05, .08, .11, Development
+
+  Build `build` revision `commit`.first(7)
+
+  `pullrequest`
+
+  `files`
+
+If any builds in .02.05.08.11 or dev
+
+  Build `lowest build` revision `commit`.first(7)
+  Build `build`
+
+  `pullrequest`
+
+  `files`

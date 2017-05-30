@@ -11,7 +11,7 @@ function runWithDictionary(funct) {
     $time_out_handle = window.setTimeout(run, 40);
   }
 
-  if ($(location).attr('href').indexOf("pull") > 0) {
+  if ($(location).attr('href').indexOf('pull') > 0) {
     branch = $("span.css-truncate-target").last().html();
   } else {
     branch = $(location).attr('href').split('/').pop();

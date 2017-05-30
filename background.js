@@ -9,6 +9,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, callback) {
     xhttp.onerror = function() {
         // Do whatever you want on error. Don't forget to invoke the
         // callback to clean up the communication port.
+        console.log(this);
         callback();
     };
     xhttp.open(method, request.url, true);

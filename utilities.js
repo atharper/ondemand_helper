@@ -17,7 +17,7 @@ function getColor (build) {
   } else if (build.result === 'Failed') {
     return 'red';
   }
-  return false;
+  return '';
 }
 
 function getLastBuild(branch, funct, page) {

@@ -30,4 +30,8 @@ function mainCommits(dictionary) {
 (function () {
   if ($(location).attr('href').indexOf('github') < 0) return;
   runWithDictionary(mainCommits);
+
+  window.setInterval(function() {
+    runWithDictionary(mainCommits);
+    }, 100);
 })();

@@ -14,7 +14,6 @@ chrome.storage.sync.get({
 
     addRevision(build);
     addPullRequest(build);
-    addFiles(build);
   });
 })();
 
@@ -42,11 +41,14 @@ function addRevision(build) {
 function addPullRequest(build) {
   request('/repos/caselle/Connect/pulls?head=caselle:' + build.branch, function(response) {
     $('#pull-link').attr('href', response[0].html_url).text(response[0].html_url);
+    $('#pull-link').attr('pull-number', response[0].html_url.split('/').pop())
+
+    addFiles(build);
   });
 }
 
 function addFiles(build) {
-  requestText('/repos/caselle/Connect/pulls/780.diff', function(data) {
+  requestText('/repos/caselle/Connect/pulls/' + $('#pull-link').attr('pull-number') + '.diff', function(data) {
     var lines = data.split(/\r?\n/).filter(function(line) {return line.startsWith('+++') || line.startsWith('---')});
     for (var i = 0; i < lines.length; i += 2) {
       var lineA = lines[i].substring(5);

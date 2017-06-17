@@ -31,6 +31,7 @@ function runWithDictionary(funct) {
           $.each(pipeline.build_cause.material_revisions[0].modifications, function(j, modification) {
             if (!dictionary[modification.revision]) dictionary[modification.revision] = {
               label: pipeline.label,
+              fullBuild: branch + '.' + pipeline.label.split('.').pop(),
               state: pipeline.stages[0].jobs[0].state,
               result: pipeline.stages[0].jobs[0].result,
               branch: branch,

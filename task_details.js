@@ -4,7 +4,11 @@
 
     mainTask();
     window.setInterval(mainTask, 5000);
+    _fastTask = window.setInterval(fastTask, 200);
 })();
+
+var _lastBuild = null;
+var _fastTask;
 
 function mainTask() {
   var taskLabel = $('span[sel-id="rightPanel_referenceNumber"]').last();
@@ -12,9 +16,35 @@ function mainTask() {
 
   $.each(['.02', '.05', '.08', '.11'], function (_, x) {
     getLastBuild(taskLabel.attr('data-task') + x, function(build) {
+      _lastBuild = build;
       insertTaskDetails(build);
+      insertBuildNumberButton(build)
     });
   });
+}
+
+function fastTask() {
+  if (_lastBuild == null) return;
+  insertBuildNumberButton(_lastBuild);
+}
+
+function insertBuildNumberButton(build) {
+  if (!$('#buildButton').length)
+  {
+    var fixParent = $('li[name="DE:Build Number of Fix"]').last();
+    if (fixParent == null) return;
+
+    var input = fixParent.find('input');
+    console.log('input');
+    console.log(input);
+    input.after('<button id="buildButton" class="btn btn-text text" style="padding-left: 10px;"></button>');
+
+  };
+  var button = $('#buildButton');
+  if (button.attr('data-build') == build.fullBuild) return;
+  button.click(function() { input.val($(this).attr('data-build')); });
+  button.text('Insert Build ' + build.fullBuild);
+  button.attr('data-build', build.fullBuild);
 }
 
 function insertTaskDetails(build) {
@@ -37,6 +67,4 @@ function insertTaskDetails(build) {
       div.find('img').attr('src', chrome.extension.getURL('/images/github.png'));
     });
   }
-
-
 }

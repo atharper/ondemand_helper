@@ -10,7 +10,7 @@ chrome.storage.sync.get({
       code: '(' + returnDOM + ')();'
   }, (results) => {
     var build = $(results[0]).find('.build-number').data('build');
-    $('#build').text(build.label);
+    $('#build').text(build.fullBuild);
 
     addRevision(build);
     addPullRequest(build);

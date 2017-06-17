@@ -37,6 +37,7 @@ function getLastBuild(branch, funct, page) {
       state: pipeline.stages[0].jobs[0].state,
       result: pipeline.stages[0].jobs[0].result,
       branch: branch,
+      fullBuild: branch + '.' + pipeline.label.split('.').pop(),
       infoLink: 'http://cctray:peekaboo$Treet@gocaselle:8153/go/pipelines/' + branch + '/' + pipeline.label.split('.').pop() + '/MSBuild/1'
     });
   });

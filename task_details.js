@@ -7,7 +7,7 @@
 })();
 
 function mainTask() {
-  var taskLabel = $('.fnt-sm').last();
+  var taskLabel = $('span[sel-id="rightPanel_referenceNumber"]').last();
   if (!taskLabel.attr('data-task')) taskLabel.attr('data-task', taskLabel.html());
 
   $.each(['.02', '.05', '.08', '.11'], function (_, x) {
@@ -18,7 +18,7 @@ function mainTask() {
 }
 
 function insertTaskDetails(build) {
-  var taskLabel = $('.fnt-sm').last();
+  var taskLabel = $('span[sel-id="rightPanel_referenceNumber"]').last();
 
   var color = getColor(build);
 

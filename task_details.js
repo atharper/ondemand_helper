@@ -35,16 +35,15 @@ function insertBuildNumberButton(build) {
     if (fixParent == null) return;
 
     var input = fixParent.find('input');
-    console.log('input');
-    console.log(input);
-    input.after('<button id="buildButton" class="btn btn-text text" style="padding-left: 10px;"></button>');
-
+    input.after('<button id="buildButton" class="btn btn-text text" style="padding-left: 10px;">Insert Build <span id="buildButtonNumber"/></button>');
   };
   var button = $('#buildButton');
+  var buttonBuild = $('#buildButtonNumber');
   if (button.attr('data-build') == build.fullBuild) return;
   button.click(function() { input.val($(this).attr('data-build')); });
-  button.text('Insert Build ' + build.fullBuild);
   button.attr('data-build', build.fullBuild);
+  buttonBuild.text(build.fullBuild);
+  buttonBuild.css('color', getColor(build));
 }
 
 function insertTaskDetails(build) {

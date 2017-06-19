@@ -12,7 +12,6 @@ function save_options() {
 }
 
 function restore_options() {
-  console.log("restoring options");
   chrome.storage.sync.get({
     key: '',
   }, function(items) {

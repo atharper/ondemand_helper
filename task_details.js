@@ -35,7 +35,7 @@ function insertBuildNumberButton(build) {
     if (fixParent == null) return;
 
     var input = fixParent.find('input');
-    input.after('<button id="buildButton" class="btn btn-text text" style="padding-left: 10px;">Insert Build <span id="buildButtonNumber"/></button>');
+    input.after('<button id="buildButton" class="btn btn-text text" style="padding-left: 10px;font-size: 12px;">Insert Build <span id="buildButtonNumber"/></button>');
   };
   var button = $('#buildButton');
   var buttonBuild = $('#buildButtonNumber');

@@ -42,3 +42,26 @@ function getLastBuild(branch, funct, page) {
     });
   });
 }
+var key = '';
+
+
+
+function gitHubRequest(uri, funct, addHeaders) {
+  chrome.storage.sync.get({
+    key: '',
+  }, function(items) {
+    key = items.key;
+    var request = new XMLHttpRequest();
+
+    request.onload = function() {
+      funct(tryParseJSON(this.responseText));
+    };
+
+    request.open('GET', 'https://api.github.com' + uri, true)
+    request.setRequestHeader('Authorization', 'token ' + key);
+    request.setRequestHeader('User-Agent', 'aluhadora');
+    if (addHeaders) addHeaders(request);
+
+    request.send()
+  });
+}

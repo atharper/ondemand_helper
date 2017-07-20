@@ -66,4 +66,9 @@ function insertTaskDetails(build) {
       div.find('img').attr('src', chrome.extension.getURL('/images/github.png'));
     });
   }
+
+  gitHubRequest('/repos/caselle/Connect/pulls?head=caselle:' + build.branch, function(response) {
+    console.log(response);
+    div.find('a').attr('href', response[0].html_url);
+  });
 }

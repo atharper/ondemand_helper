@@ -17,7 +17,7 @@ function runWithDictionary(funct) {
     branch = $(location).attr('href').split('/').pop();
   }
 
-  $.each(['2017.08', '2017.11', 'Development', branch], function (__, buildBranch) {
+  $.each(['2017.11', '2018.02', 'Development', branch], function (__, buildBranch) {
     $.each([0, 10, 20, 30, 40], function (_, x) {
       chrome.runtime.sendMessage({
         method: 'GET',

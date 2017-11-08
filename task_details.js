@@ -2,15 +2,15 @@
   if ($(location).attr('href').indexOf('caselle.my.workfront.com/task/view') < 0 &&
     $(location).attr('href').indexOf('caselle.attask-ondemand.com/task/view') < 0) return;
 
-    mainTask();
-    window.setInterval(mainTask, 5000);
+    taskDetailTask();
+    window.setInterval(taskDetailTask, 5000);
     _fastTask = window.setInterval(fastTask, 200);
 })();
 
 var _lastBuild = null;
 var _fastTask;
 
-function mainTask() {
+function taskDetailTask() {
   var taskLabel = $('span[sel-id="rightPanel_referenceNumber"]').last();
   if (!taskLabel.attr('data-task')) taskLabel.attr('data-task', taskLabel.html());
 

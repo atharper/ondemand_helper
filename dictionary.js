@@ -13,6 +13,8 @@ function runWithDictionary(funct) {
 
   if ($(location).attr('href').indexOf('pull') > 0) {
     branch = $("span.css-truncate-target").last().html();
+  } else if ($(location).attr('href').indexOf('commit/') > 0) { 
+    branch = $(".branches-list").find('a').first().text();
   } else {
     branch = $(location).attr('href').split('/').pop();
   }
@@ -26,25 +28,25 @@ function runWithDictionary(funct) {
       }, function (responseText) {
         var response = tryParseJSON(responseText);
         if (!response) return;
-
+    
         $.each(response.pipelines, function(i, pipeline) {
           $.each(pipeline.build_cause.material_revisions[0].modifications, function(j, modification) {
             if (!dictionary[modification.revision]) { 
               dictionary[modification.revision] = {
               label: pipeline.label,
-              fullBuild: branch + '.' + pipeline.label.split('.').pop(),
+              fullBuild: buildBranch + '.' + pipeline.label.split('.').pop(),
               state: pipeline.stages[0].jobs[0].state,
               result: pipeline.stages[0].jobs[0].result,
-              branch: branch,
+              branch: buildBranch,
               infoLink: 'http://cctray:peekaboo$Treet@gocaselle:8153/go/pipelines/' + buildBranch + '/' + pipeline.label.split('.').pop() + '/MSBuild/1',
               additionalBuilds: []
             }} else {
               dictionary[modification.revision].additionalBuilds.push({
                 label: pipeline.label,
-                fullBuild: branch + '.' + pipeline.label.split('.').pop(),
+                fullBuild: buildBranch + '.' + pipeline.label.split('.').pop(),
                 state: pipeline.stages[0].jobs[0].state,
                 result: pipeline.stages[0].jobs[0].result,
-                branch: branch,
+                branch: buildBranch,
                 infoLink: 'http://cctray:peekaboo$Treet@gocaselle:8153/go/pipelines/' + buildBranch + '/' + pipeline.label.split('.').pop() + '/MSBuild/1',
               });
             }

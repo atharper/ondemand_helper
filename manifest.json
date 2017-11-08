@@ -1,7 +1,7 @@
 {
   "name": "Ferdinand Build Injector",
   "short_name": "Ferdinand",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "manifest_version": 2,
   "description": "Injecting connect build column into github commit pages",
   "homepage_url": "http://caselle.com",
@@ -17,8 +17,9 @@
           "128": "/images/icon128.png" },
   "content_scripts": [ {
     "matches": ["https://github.com/caselle/Connect/commits*", "https://github.com/caselle/Connect/pull/*", "https://caselle.my.workfront.com/task/view?ID*",
-      "https://caselle.attask-ondemand.com/task/view?ID*", "http://gocaselle:8153/go/pipelines"],
-    "js": ["jquery.min.js", "utilities.js", "dictionary.js", "commits.js", "task_details.js", "gocd.js"]
+      "https://caselle.attask-ondemand.com/task/view?ID*", "http://gocaselle:8153/go/pipelines", "https://github.com/caselle/Connect/branches*",
+      "https://github.com/caselle/Connect/commit*"],
+    "js": ["jquery.min.js", "utilities.js", "dictionary.js", "commits.js", "task_details.js", "gocd.js", "branches.js"]
   } ],
   "browser_action": {
     "default_title": "Add column",

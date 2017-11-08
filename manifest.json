@@ -1,7 +1,7 @@
 {
   "name": "Ferdinand Build Injector",
   "short_name": "Ferdinand",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "manifest_version": 2,
   "description": "Injecting connect build column into github commit pages",
   "homepage_url": "http://caselle.com",

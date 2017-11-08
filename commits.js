@@ -17,13 +17,20 @@ function mainCommits(dictionary) {
     if ($(this).find('.copy-stuff').length !== 0 || $(this).find('.copy-stuff').attr('refreshing') === 1) return;
 
     var cell = $(this).children('.commit-links-cell');
-    cell.css('width', '385px');
+    cell.css('width', '500px');
     $.get(chrome.extension.getURL('/templates/github_link.html'), function(data) {
       cell.append(data);
       var div = cell.children('.copy-stuff');
       div.attr('refreshing', 0);
       div.find('button').attr('data-clipboard-text', build.label);
-      div.find('a').attr('href', build.infoLink).text(build.label).css('color', color ? color : '');
+      var a = div.find('a')
+      a.attr('href', build.infoLink).text(build.label).css('color', color ? color : '');
+      console.log(build);
+      if (build.additionalBuilds) {
+        build.additionalBuilds.forEach(function(element) {
+          a.attr('aria-label', element.label + '\n' + a.attr('aria-label'));
+        }, this);
+      }
     });
   });
 }

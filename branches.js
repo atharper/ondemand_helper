@@ -26,7 +26,6 @@ function commitTask() {
   if (!span.find('#builds').length) {
 
     span.find('.user-select-contain').attr('id', 'revision');
-    console.log(span.find('.user-select-contain'));
   
     var buildLabel = '<span class="sha-block" id="builds">build </span>';
     span.append(buildLabel);

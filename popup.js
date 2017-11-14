@@ -10,12 +10,28 @@ chrome.storage.sync.get({
       code: '(' + returnDOM + ')();'
   }, (results) => {
     var build = $(results[0]).find('.build-number').data('build');
+    if (!build) build = StubBuild($(results[0]));
     $('#build').text(build.fullBuild);
 
     addRevision(build);
     addPullRequest(build);
   });
 })();
+
+function StubBuild(results) {
+  var taskLabel = $(results).find('span[sel-id="rightPanel_referenceNumber"]').last();
+  if (!taskLabel.attr('data-task')) taskLabel.attr('data-task', taskLabel.html());
+
+  return {
+    label: taskLabel.text() + '.05.1',
+    fullBuild: taskLabel.text() + '.05.1',
+    state: 'unknown',
+    result: 'unknown',
+    branch: taskLabel.text() + '.05',
+    infoLink: 'http://cctray:peekaboo$Treet@gocaselle:8153/go/pipelines/' + taskLabel.text + '.05/1/MSBuild/1',
+    additionalBuilds: []
+  };
+}
 
 function copyTextToClipboard(text) {
   var copyFrom = $('<textarea/>');

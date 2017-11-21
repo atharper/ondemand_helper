@@ -28,7 +28,7 @@ function runWithDictionary(funct) {
       }, function (responseText) {
         var response = tryParseJSON(responseText);
         if (!response) return;
-    
+
         $.each(response.pipelines, function(i, pipeline) {
           $.each(pipeline.build_cause.material_revisions[0].modifications, function(j, modification) {
             if (!dictionary[modification.revision]) { 
@@ -38,7 +38,8 @@ function runWithDictionary(funct) {
               state: pipeline.stages[0].jobs[0].state,
               result: pipeline.stages[0].jobs[0].result,
               branch: buildBranch,
-              infoLink: 'http://cctray:peekaboo$Treet@gocaselle:8153/go/pipelines/' + buildBranch + '/' + pipeline.label.split('.').pop() + '/MSBuild/1',
+              // infoLink: 'http://cctray:peekaboo$Treet@gocaselle:8153/go/pipelines/' + buildBranch + '/' + pipeline.label.split('.').pop() + '/MSBuild/1',
+              infoLink: 'http://cctray:peekaboo$Treet@gocaselle:8153/go/files/' + buildBranch + '/' + pipeline.label.split('.').pop() + '/MSBuild/1/MSBuildExec/cruise-output/console.log',
               additionalBuilds: []
             }} else {
               dictionary[modification.revision].additionalBuilds.push({
@@ -47,7 +48,7 @@ function runWithDictionary(funct) {
                 state: pipeline.stages[0].jobs[0].state,
                 result: pipeline.stages[0].jobs[0].result,
                 branch: buildBranch,
-                infoLink: 'http://cctray:peekaboo$Treet@gocaselle:8153/go/pipelines/' + buildBranch + '/' + pipeline.label.split('.').pop() + '/MSBuild/1',
+                infoLink: 'http://cctray:peekaboo$Treet@gocaselle:8153/go/files/' + buildBranch + '/' + pipeline.label.split('.').pop() + '/MSBuild/1/MSBuildExec/cruise-output/console.log',
               });
             }
           });

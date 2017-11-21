@@ -25,7 +25,6 @@ function mainCommits(dictionary) {
       div.find('button').attr('data-clipboard-text', build.label);
       var a = div.find('a')
       a.attr('href', build.infoLink).text(build.label).css('color', color ? color : '');
-      console.log(build);
       if (build.additionalBuilds) {
         build.additionalBuilds.forEach(function(element) {
           a.attr('aria-label', element.label + '\n' + a.attr('aria-label'));

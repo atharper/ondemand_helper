@@ -14,7 +14,7 @@ function taskDetailTask() {
   var taskLabel = $('span[sel-id="rightPanel_referenceNumber"]').last();
   if (!taskLabel.attr('data-task')) taskLabel.attr('data-task', taskLabel.html());
 
-  $.each(['.08', '.11', '.02', '.05'], function (_, x) {
+  $.each(['.02', '.05', '.08', '.11'], function (_, x) {
     getLastBuild(taskLabel.attr('data-task') + x, function(build) {
       _lastBuild = build;
       insertTaskDetails(build);
